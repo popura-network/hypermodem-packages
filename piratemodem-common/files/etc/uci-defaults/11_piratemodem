@@ -1,0 +1,5 @@
+#!/bin/sh
+uci -q batch << EOF
+set system.@system[0].hostname='PirateModem'
+set network.lan.proto='dhcp'
+EOF
