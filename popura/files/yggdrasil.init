@@ -4,6 +4,9 @@ START=90
 STOP=85
 
 USE_PROCD=1
+BIN_FILE="/usr/sbin/yggdrasil"
+CONFIG_FILE="/tmp/yggdrasil.conf"
+DAEMON_OPTS="-useconffile $CONFIG_FILE"
 
 start_service()
 {
@@ -11,10 +14,14 @@ start_service()
 	# FIXME: Should wait until IPv6 link local addresses are available on br-lan
 	[ ! -f /tmp/.yggdrasil_started ] && ( touch /tmp/.yggdrasil_started && sleep 7 )
 
+        if [ "`uci -q get popura.@popura[0].autopeer`" != "0" ]; then
+            DAEMON_OPTS="$DAEMON_OPTS -autopeer"
+        fi
+        /usr/sbin/ygguci get | $BIN_FILE -useconf -normaliseconf -json > $CONFIG_FILE
+
 	procd_open_instance
 	procd_set_param respawn
-
-	procd_set_param command /bin/ash -c "ygguci get | yggdrasil -useconf -normaliseconf -json | yggdrasil -useconf -autopeer"
+	procd_set_param command $BIN_FILE $DAEMON_OPTS
 	procd_set_param stdout 1
 	procd_set_param stderr 1
 	procd_close_instance

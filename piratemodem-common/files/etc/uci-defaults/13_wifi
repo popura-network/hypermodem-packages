@@ -1,4 +1,5 @@
 #!/bin/sh
+uci -q get wireless.radio0 > /dev/null || exit 0
 
 # create an isolated network for wireless ygg links
 uci -q batch << EOF
