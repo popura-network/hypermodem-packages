@@ -2,4 +2,6 @@
 uci -q batch << EOF
 set system.@system[0].hostname='PirateModem'
 set network.lan.proto='dhcp'
+add_list dhcp.@dnsmasq[0].server=/meshname/::1\#53535
+add_list dhcp.@dnsmasq[0].server=/ygg/::1\#53535
 EOF

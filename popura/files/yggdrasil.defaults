@@ -97,6 +97,7 @@ EOF
   uci -q batch << EOF
     set yggdrasil.yggdrasil.RAdv_Interface='br-lan'
     set yggdrasil.yggdrasil.RAdv_Enable='1'
+    set yggdrasil.yggdrasil.Meshname_Enable='1'
 EOF
 
   uci -q batch << EOF
