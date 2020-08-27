@@ -38,6 +38,7 @@ function UCI.defaults()
 		RAdv = {
 			Enable = false,
 			DefaultRouter = false,
+			DNS = false,
 			Interface = "eth0",
 			SetGatewayIP = true
 		},
@@ -140,6 +141,9 @@ function UCI.get()
 	if config.RAdv_DefaultRouter ~= nil then
 		obj.RAdv.DefaultRouter = to_bool(config.RAdv_DefaultRouter)
 	end
+	if config.RAdv_DNS ~= nil then
+		obj.RAdv.DNS = to_bool(config.RAdv_DNS)
+	end
 	obj.RAdv.Interface = config.RAdv_Interface or obj.RAdv.Interface
 	-- /radv config
 
@@ -232,6 +236,7 @@ function UCI.set(obj)
 	-- radv config
 	cursor:set("yggdrasil", "yggdrasil", "RAdv_Enable", to_int(obj.RAdv.Enable)) 
 	cursor:set("yggdrasil", "yggdrasil", "RAdv_DefaultRouter", to_int(obj.RAdv.DefaultRouter)) 
+	cursor:set("yggdrasil", "yggdrasil", "RAdv_DNS", to_int(obj.RAdv.DNS)) 
 	cursor:set("yggdrasil", "yggdrasil", "RAdv_SetGatewayIP", to_int(obj.RAdv.SetGatewayIP)) 
 	cursor:set("yggdrasil", "yggdrasil", "RAdv_Interface", obj.RAdv.Interface) 
 	-- /radv config

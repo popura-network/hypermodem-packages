@@ -15,6 +15,7 @@ return view.extend({
 		s.option(form.Value, "RAdv_Interface", _("Send router advertisement for this network interface"));
 		s.option(form.Flag, "RAdv_SetGatewayIP", _("Set IP address on the Interface automatically"));
 		s.option(form.Flag, "RAdv_DefaultRouter", _("Advertise a default router (a fix for Android)"));
+		s.option(form.Flag, "RAdv_DNS", _("Advertise this router as a DNS server (RFC 8106)"));
 
 		return m.render();
 	}
