@@ -1,2 +1,2 @@
-# piratemodem-packages
-Packages for PirateModem OpenWRT firmware
+# hypermodem-packages
+Packages for HyperModem OpenWRT firmware

@@ -92,7 +92,7 @@ EOF
   uci commit firewall
   uci commit network
 
-  # PirateModem custom settings
+  # HyperModem custom settings
 
   uci -q batch << EOF
     set yggdrasil.yggdrasil.RAdv_Interface='br-lan'

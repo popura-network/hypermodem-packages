@@ -3,19 +3,19 @@ uci -q get wireless.radio0 > /dev/null || exit 0
 
 # create an isolated network for wireless ygg links
 uci -q batch << EOF
-set network.piratemodem=interface
-set network.piratemodem.proto='static'
-set network.piratemodem.ipaddr='192.168.177.1'
-set network.piratemodem.netmask='255.255.255.0'
+set network.hypermodem=interface
+set network.hypermodem.proto='static'
+set network.hypermodem.ipaddr='192.168.177.1'
+set network.hypermodem.netmask='255.255.255.0'
 EOF
 
 # create dhcp for a network
 uci -q batch << EOF
-set dhcp.piratemodem=dhcp
-set dhcp.piratemodem.start='100'
-set dhcp.piratemodem.leasetime='12h'
-set dhcp.piratemodem.limit='150'
-set dhcp.piratemodem.interface='piratemodem'
+set dhcp.hypermodem=dhcp
+set dhcp.hypermodem.start='100'
+set dhcp.hypermodem.leasetime='12h'
+set dhcp.hypermodem.limit='150'
+set dhcp.hypermodem.interface='hypermodem'
 EOF
 
 # setup wifi ap
@@ -24,6 +24,6 @@ set wireless.radio0.disabled='0'
 set wireless.default_radio0.device='radio0'
 set wireless.default_radio0.mode='ap'
 set wireless.default_radio0.encryption='none'
-set wireless.default_radio0.ssid='PirateModem'
-set wireless.default_radio0.network='piratemodem'
+set wireless.default_radio0.ssid='HyperModem'
+set wireless.default_radio0.network='hypermodem'
 EOF
