@@ -1,4 +1,10 @@
 #!/bin/sh
+
+# Remove default odhcpd parameters
+if [ -f /etc/uci-defaults/odhcpd.defaults ]; then
+    sed -i '/set dhcp.lan.\(dhcpv6\|ra\)=$MODE/d' /etc/uci-defaults/odhcpd.defaults
+fi
+
 uci -q batch << EOF
 set system.@system[0].hostname='HyperModem'
 set network.lan.proto='dhcp'
